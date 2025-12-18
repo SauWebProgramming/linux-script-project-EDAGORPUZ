@@ -53,7 +53,7 @@ Aşağıda, scriptin ürettiği ve tarayıcıda görüntülenen sunucu durum pan
 
 ---
 
-Öğrenci Bilgileri
-Ad Soyad: Eda GÖRPÜZ
-Öğrenci No: B241200015
-Ders: Bilişim Sistemleri Altyapı ve Teknolojileri
+### 🎓 Öğrenci Bilgileri
+* **Ad Soyad:** Eda GÖRPÜZ
+* **Öğrenci No:** B241200015
+* **Ders:** Bilişim Sistemleri Altyapı ve Teknolojileri
