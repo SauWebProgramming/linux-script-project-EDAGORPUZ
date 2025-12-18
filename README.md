@@ -35,7 +35,7 @@ Hazırlanan `monitor.sh` isimli Bash scripti, sistemden şu verileri çeker ve `
 
 ---
 
-## ⏰ Otomasyon (Cronjob) Ayarı
+## ⏰ Otomasyon Ayarı
 Scriptin manuel çalıştırılması yerine, her dakika otomatik olarak güncellenmesi için **Crontab** kullanılmıştır .
 
 **Yapılan Cron Ayarı:**
@@ -44,6 +44,15 @@ Terminalde `crontab -e` komutu ile aşağıdaki satır eklenmiştir:
 ```bash
 * * * * * /home/eda/monitor.sh
 ```
+---
+
+## 📊 Proje Ekran Görüntüsü
+Aşağıda, scriptin ürettiği ve tarayıcıda görüntülenen sunucu durum paneli yer almaktadır:
+
+![Linux Dashboard Ekran Görüntüsü](screenshot.png)
+
+---
+
 Öğrenci Bilgileri
 Ad Soyad: Eda GÖRPÜZ
 Öğrenci No: B241200015
