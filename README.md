@@ -1,41 +1,50 @@
 # Linux Sunucu Durum Paneli (Server Dashboard)
 
-## 📋 Proje Tanıtımı
-Bu proje, **Bilişim Sistemleri Altyapı ve Teknolojileri** dersi dönem projesi kapsamında hazırlanmıştır. Amaç, Linux tabanlı bir sunucuda (veya WSL ortamında) sistemin sağlık durumunu (CPU, RAM, Disk, Kullanıcılar) izleyen ve bu verileri web tabanlı bir arayüzde otomatik olarak güncelleyen bir otomasyon geliştirmektir.
+## 📌 Proje Hakkında
+Bu proje, **Bilişim Sistemleri Altyapı ve Teknolojileri** dersi dönem projesi kapsamında geliştirilmiştir. Projenin amacı; Linux komut satırı araçlarını kullanarak sunucunun anlık sağlık durumunu (CPU, RAM, Disk, Kullanıcılar) takip eden ve bu verileri bir web arayüzünde raporlayan bir otomasyon sistemi kurmaktır .
 
-Proje, Bash script programlama ve Cronjob zamanlayıcısı kullanılarak gerçekleştirilmiştir.
-
----
-
-## ⚙️ Kurulum ve Kullanılan Paketler
-Proje geliştirme sürecinde aşağıdaki ortam ve paketler kullanılmıştır:
-
-* **İşletim Sistemi:** Ubuntu (WSL - Windows Subsystem for Linux üzerinde)
-* **Web Sunucusu:** Apache2
-    * Kurulum Komutu: `sudo apt install apache2 -y`
-* **Editör:** Nano / VS Code
-
-Web sunucusunun çalışırlığı `systemctl status apache2` komutu ile doğrulanmış ve `/var/www/html` dizinine yazma izinleri yapılandırılmıştır.
+Proje, **WSL (Windows Subsystem for Linux)** üzerinde Ubuntu işletim sistemi kullanılarak hazırlanmıştır.
 
 ---
 
-## 📄 Script Detayları (monitor.sh)
-`monitor.sh` isimli Bash scripti, sistemden aşağıdaki verileri çeker:
-1.  **Tarih/Saat:** `date` komutu.
-2.  **CPU Kullanımı:** `top` ve `grep` komutları ile filtrelenmiş veri.
-3.  **RAM Durumu:** `free -m` komutu.
-4.  **Disk Alanı:** `df -h` komutu.
-5.  **Aktif Kullanıcılar:** `who` komutu.
+## ⚙️ Kurulum ve Gerekli Paketler
+Projenin çalışması için aşağıdaki adımlar uygulanmış ve gerekli paketler kurulmuştur:
 
-Script, bu verileri HTML formatına dönüştürerek `/var/www/html/index.html` dosyasını her çalıştırıldığında yeniden oluşturur.
+1.  **Web Sunucusu Kurulumu:**
+    Sisteme **Apache2** web sunucusu kurulmuştur.
+    ```bash
+    sudo apt install apache2 -y
+    ```
+
+2.  **Servis Kontrolü:**
+    Apache servisinin çalıştığı `systemctl status apache2` komutu ile doğrulanmıştır .
+
+3.  **İzinlerin Ayarlanması:**
+    Scriptin HTML dosyası oluşturabilmesi için `/var/www/html` dizinine gerekli yazma izinleri verilmiştir .
 
 ---
 
-## ⏰ Otomasyon ve Cron Ayarı
-Sistemin manuel müdahale olmadan sürekli güncel kalması için **Crontab** kullanılmıştır. Scriptin her dakika (dakikada bir) otomatik çalışması sağlanmıştır.
+## 📝 Script ve Çalışma Mantığı (monitor.sh)
+Hazırlanan `monitor.sh` isimli Bash scripti, sistemden şu verileri çeker ve `/var/www/html/index.html` dosyasını oluşturur:
+
+* **Tarih ve Saat:** Raporun oluşturulduğu an.
+* **CPU Kullanımı:** `top` komutu ile işlemci yükü hesaplanır.
+* **RAM Durumu:** `free -m` komutu ile kullanılan ve boş bellek miktarı alınır.
+* **Disk Alanı:** `df -h` komutu ile disk doluluk oranı çekilir.
+* **Aktif Kullanıcılar:** `who` komutu ile sisteme bağlı kullanıcı sayısı belirlenir.
+
+---
+
+## ⏰ Otomasyon (Cronjob) Ayarı
+Scriptin manuel çalıştırılması yerine, her dakika otomatik olarak güncellenmesi için **Crontab** kullanılmıştır .
 
 **Yapılan Cron Ayarı:**
-Terminalde `crontab -e` komutu ile konfigürasyon dosyası açılmış ve aşağıdaki satır eklenmiştir:
+Terminalde `crontab -e` komutu ile aşağıdaki satır eklenmiştir:
 
 ```bash
 * * * * * /home/eda/monitor.sh
+```
+Öğrenci Bilgileri
+Ad Soyad: Eda GÖRPÜZ
+Öğrenci No: B241200015
+Ders: Bilişim Sistemleri Altyapı ve Teknolojileri
